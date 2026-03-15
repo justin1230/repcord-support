@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Repcord Support</title>
+    <meta
+      name="description"
+      content="Support for Repcord, a reptile feeding, weight, care, and health tracking app."
+    >
+    <style>
+      :root {
+        --bg: #f4f7f5;
+        --surface: rgba(255, 255, 255, 0.9);
+        --surface-strong: #ffffff;
+        --text: #13201a;
+        --muted: #5f7067;
+        --line: rgba(16, 24, 20, 0.08);
+        --accent: #10b981;
+        --accent-dark: #0b8f64;
+        --shadow: 0 24px 60px rgba(17, 24, 39, 0.08);
+        --radius: 24px;
+        --radius-small: 16px;
+        --max-width: 1100px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "SF Pro Display", "SF Pro Text", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(16, 185, 129, 0.12), transparent 34%),
+          radial-gradient(circle at top right, rgba(12, 166, 120, 0.1), transparent 28%),
+          linear-gradient(180deg, #fbfcfb 0%, var(--bg) 100%);
+        line-height: 1.55;
+      }
+
+      a {
+        color: var(--accent-dark);
+      }
+
+      .shell {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 32px 20px 64px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 56px;
+        border-radius: 32px;
+        background:
+          linear-gradient(135deg, rgba(16, 185, 129, 0.18), rgba(255, 255, 255, 0.8) 46%),
+          var(--surface-strong);
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(16, 185, 129, 0.12);
+        color: var(--accent-dark);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        letter-spacing: -0.03em;
+      }
+
+      h1 {
+        margin-top: 18px;
+        font-size: clamp(40px, 7vw, 72px);
+        line-height: 0.95;
+        max-width: 700px;
+      }
+
+      .lead {
+        max-width: 620px;
+        margin-top: 22px;
+        font-size: 19px;
+        color: var(--muted);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 18px;
+        border-radius: 999px;
+        font-weight: 700;
+        text-decoration: none;
+        border: 1px solid transparent;
+      }
+
+      .button.primary {
+        background: var(--accent);
+        color: #ffffff;
+      }
+
+      .button.secondary {
+        background: rgba(255, 255, 255, 0.84);
+        color: var(--text);
+        border-color: var(--line);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .card {
+        padding: 24px;
+        border-radius: var(--radius);
+        background: var(--surface);
+        backdrop-filter: blur(12px);
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(255, 255, 255, 0.65);
+      }
+
+      .card h3 {
+        font-size: 20px;
+      }
+
+      .card p,
+      .faq p,
+      .faq li {
+        color: var(--muted);
+      }
+
+      .section {
+        margin-top: 54px;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .section-header p {
+        margin: 0;
+        max-width: 540px;
+        color: var(--muted);
+      }
+
+      .section-header h2 {
+        font-size: clamp(28px, 4vw, 42px);
+      }
+
+      .faq-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .faq {
+        padding: 24px;
+        border-radius: var(--radius-small);
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid var(--line);
+      }
+
+      .faq h3 {
+        font-size: 19px;
+        margin-bottom: 10px;
+      }
+
+      .faq p {
+        margin: 0;
+      }
+
+      .contact {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+      }
+
+      .meta-list {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .meta-list li {
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: rgba(16, 24, 20, 0.03);
+      }
+
+      .footer {
+        margin-top: 40px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      code {
+        padding: 2px 6px;
+        border-radius: 999px;
+        background: rgba(16, 185, 129, 0.12);
+        color: var(--accent-dark);
+        font-family: "SF Mono", ui-monospace, monospace;
+        font-size: 0.9em;
+      }
+
+      @media (max-width: 860px) {
+        .hero {
+          padding: 32px 24px;
+        }
+
+        .grid,
+        .faq-list,
+        .contact {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .shell {
+          padding: 20px 14px 48px;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="eyebrow">Repcord Support</div>
+        <h1>Help for sync, backup, purchases, and care records.</h1>
+        <p class="lead">
+          Repcord helps reptile keepers track feeding, weight, care, and health logs across Apple devices with iCloud sync and manual backup import/export.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="mailto:support@example.com">Contact Support</a>
+          <a class="button secondary" href="privacy.html">Privacy Policy</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid">
+          <article class="card">
+            <h3>Sync & Backup</h3>
+            <p>
+              Use iCloud sync for device-to-device updates, and export a JSON backup from the Stats page for manual recovery.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Purchases</h3>
+            <p>
+              If Pro features are locked, go to Settings and use <code>Restore Purchases</code> after confirming you are signed in with the correct Apple ID.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Support Contact</h3>
+            <p>
+              For bug reports, include your device model, iOS version, app version, and a short description of the issue.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+          <p>
+            These cover the most common setup, sync, backup, and purchase questions.
+          </p>
+        </div>
+        <div class="faq-list">
+          <article class="faq">
+            <h3>How do I sync data across devices?</h3>
+            <p>
+              Sign in to the same Apple ID on each device, make sure iCloud is enabled for Repcord, and keep the app connected to the internet. You can also check the Sync Diagnostics page inside Settings.
+            </p>
+          </article>
+          <article class="faq">
+            <h3>How do I back up and restore my data?</h3>
+            <p>
+              In the Stats page, open export and choose <code>Backup</code> to save a JSON backup file. You can later import that file back into the app and choose whether to overwrite matching record IDs or import missing data only.
+            </p>
+          </article>
+          <article class="faq">
+            <h3>How do I restore purchases?</h3>
+            <p>
+              Open Settings, go to the purchase section, and tap <code>Restore Purchases</code>. If that still fails, contact support with a screenshot of the message shown in the app.
+            </p>
+          </article>
+          <article class="faq">
+            <h3>Why is a device not receiving new records?</h3>
+            <p>
+              Open Sync Diagnostics on both devices and check the latest import/export status. If export is failing, send the exact CloudKit error text shown there.
+            </p>
+          </article>
+          <article class="faq">
+            <h3>What should I include in a bug report?</h3>
+            <p>
+              Include the app version, iOS version, device model, the exact steps to reproduce the issue, and any screenshots from Sync Diagnostics or purchase alerts.
+            </p>
+          </article>
+          <article class="faq">
+            <h3>Where can I ask for support?</h3>
+            <p>
+              Email <a href="mailto:support@example.com">support@example.com</a>. Replace this placeholder with your real support address before publishing.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <h2>Contact & App Info</h2>
+          </div>
+          <p>
+            A short summary you can also reuse in App Store Connect support materials.
+          </p>
+        </div>
+        <div class="contact">
+          <article class="card">
+            <h3>About Repcord</h3>
+            <p>
+              Repcord is a record-keeping app for reptile owners. It supports feeding logs, weight tracking, care logs, health notes, calendar history, PDF export, JSON backup export/import, and iCloud sync across Apple devices.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Quick Info</h3>
+            <ul class="meta-list">
+              <li><strong>Support Email:</strong> <a href="mailto:support@example.com">support@example.com</a></li>
+              <li><strong>Privacy Policy:</strong> <a href="privacy.html">View policy</a></li>
+              <li><strong>App Name:</strong> Repcord</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <p class="footer">
+        Replace <code>support@example.com</code> with your real support email before publishing this page.
+      </p>
+    </main>
+  </body>
+</html>
